@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Dash = () => {
   const [data, setData] = useState([]);
+
   const dishes = async () => {
     try {
       const dish = await axios.get('http://localhost:5000/dash-get');
@@ -17,18 +18,17 @@ const Dash = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-400 to-indigo-600 flex flex-col items-center p-6">
-      <h1 className="text-4xl font-bold text-white mb-6">Available Dishes</h1>
+    <div className="min-h-screen bg-purple-400 flex flex-col items-center justify-center p-6">
+      <h1 className="text-5xl font-bold text-white mb-8">Available Dishes</h1>
       {data.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-6xl">
           {data.map((dish, index) => (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-200"
+              className="bg-white shadow-lg rounded-2xl p-6 text-center hover:scale-105 transform transition-all duration-300 ease-in-out"
             >
-              <h2 className="text-2xl font-semibold text-gray-800">
-                {dish.dishname}
-              </h2>
+              <h2 className="text-3xl font-semibold text-gray-800 mb-2">{dish.dishname}</h2>
+              <p className="text-lg font-medium text-gray-600 mb-4">{`₹${dish.dishcost.toFixed(2)}`}</p>
             </div>
           ))}
         </div>

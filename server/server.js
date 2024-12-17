@@ -16,10 +16,11 @@ app.get('/',(req,res)=>
 
 app.post('/disher', async (req,res) =>{
       
-    const {dishname} = req.body;
+    const {dishname,dishcost} = req.body;
 
     const Dish = new dish({
            dishname,
+           dishcost,
     })
 
     try{
