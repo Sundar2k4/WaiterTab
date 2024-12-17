@@ -45,6 +45,20 @@ app.get('/dash-get',async (req,res)=>{
     }
 });
 
+app.delete("/dish-delete/:id",async (req,res)=>{
+    try{
+          const {id} = req.params;
+          const deletedish = await dish.findByIdAndDelete(id);
+          if(deletedish)
+          {
+            res.status(201).json('deleted the dish');
+          }
+
+    }catch(err){
+        res.status(400).json('an error occured',err.message);
+    }
+})
+
 app.listen(5000,()=>{
     console.log('connected to port 5000')
 })
