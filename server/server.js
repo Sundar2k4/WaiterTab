@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const dish = require('./schema/dish');
-
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: '*' }));
@@ -58,7 +57,7 @@ app.delete("/dish-delete/:id",async (req,res)=>{
     }catch(err){
         res.status(400).json('an error occured',err.message);
     }
-})
+});
 
 app.listen(5000,()=>{
     console.log('connected to port 5000')

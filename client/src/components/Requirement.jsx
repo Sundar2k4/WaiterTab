@@ -14,7 +14,7 @@ const Requirement = () => {
       try {
         const response = await axios.post('http://localhost:5000/disher', { dishname, dishcost });
         console.log('Dish added successfully:', response.data);
-        navigate('/dash');
+        navigate('/dash')
       } catch (error) {
         console.error('Error adding dish:', error);
         alert('Failed to add dish. Please try again.');
