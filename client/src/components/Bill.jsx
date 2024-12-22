@@ -19,10 +19,10 @@ const Bill = () => {
   const total = subtotal + tax;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+    <div className="min-h-screen bg-bill flex items-center justify-center p-4">
+      <div className="bg-black/20 rounded-2xl shadow-2xl w-full max-w-md p-8">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
-          Your Bill
+          Bill
         </h1>
 
         {filteredDishes.length > 0 ? (

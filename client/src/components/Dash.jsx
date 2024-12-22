@@ -52,9 +52,9 @@ const Dash = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-purple-800 flex flex-col items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen bg-dash flex flex-col items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-6xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center mb-10 tracking-wide drop-shadow-lg">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-black/30 text-center mb-10 tracking-wide drop-shadow-lg">
           Available Dishes
         </h1>
         {data.length > 0 ? (
@@ -62,9 +62,9 @@ const Dash = () => {
             {data.map((dish, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-3xl"
+                className="bg-white/20 rounded-xl shadow-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-3xl"
               >
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 truncate">
+                <h2 className="text-2xl md:text-3xl font-bold text-black/50 mb-3 truncate">
                   {dish.dishname}
                 </h2>
                 <p className="text-lg font-semibold text-gray-600 mb-4">
@@ -73,7 +73,7 @@ const Dash = () => {
                 <div className="flex justify-center items-center space-x-4 bg-gray-100 rounded-full p-2">
                   <button
                     onClick={() => handleminus(dish._id)}
-                    className="bg-red-500 text-white p-2 rounded-full transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                    className="bg-black/30 text-white p-2 rounded-full transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
@@ -84,7 +84,7 @@ const Dash = () => {
                   </span>
                   <button
                     onClick={() => handleplus(dish._id)}
-                    className="bg-green-500 text-white p-2 rounded-full transition-colors hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+                    className="bg-green-300 text-white p-2 rounded-full transition-colors hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -98,7 +98,12 @@ const Dash = () => {
           <h2 className="text-2xl text-white text-center mt-10">No dishes available</h2>
         )}
       </div>
-      <button onClick={navigateToBill}>Bill</button>
+      <div>
+      <button onClick={()=>navigate('/')} className=' text-3xl text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in'>BACK</button>
+      <button onClick={navigateToBill} className=' text-3xl mt-20 text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in'>BILL</button>
+     
+      </div>
+      
       <div className='hidden'>
       <Bill data = {data} Dishquantity = {Dishquantity}/>
       </div>
