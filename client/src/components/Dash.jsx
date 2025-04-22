@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Bill from './Bill';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Bill from "./Bill";
+import { useNavigate } from "react-router-dom";
 
 const Dash = () => {
   const navigate = useNavigate();
@@ -11,10 +10,12 @@ const Dash = () => {
 
   const dishes = async () => {
     try {
-      const dish = await axios.get('http://localhost:5000/dash-get');
+      const dish = await axios.get(
+        "https://waitertab-server.onrender.com/dash-get"
+      );
       setData(dish.data);
     } catch (err) {
-      console.log('The error is', err.message);
+      console.log("The error is", err.message);
     }
   };
 
@@ -22,7 +23,7 @@ const Dash = () => {
     setQuantity((prevQuantities) => {
       const updatedQuantities = {
         ...prevQuantities,
-        [dishId]: (prevQuantities[dishId] || 0) + 1
+        [dishId]: (prevQuantities[dishId] || 0) + 1,
       };
       return updatedQuantities;
     });
@@ -32,18 +33,18 @@ const Dash = () => {
     setQuantity((prevQuantities) => {
       const updatedQuantities = {
         ...prevQuantities,
-        [dishId]: Math.max((prevQuantities[dishId] || 0) - 1, 0)
+        [dishId]: Math.max((prevQuantities[dishId] || 0) - 1, 0),
       };
       return updatedQuantities;
     });
   };
 
   const navigateToBill = () => {
-    navigate('/bill', { 
-      state: { 
-        data: data, 
-        Dishquantity: Dishquantity 
-      } 
+    navigate("/bill", {
+      state: {
+        data: data,
+        Dishquantity: Dishquantity,
+      },
     });
   };
 
@@ -68,15 +69,28 @@ const Dash = () => {
                   {dish.dishname}
                 </h2>
                 <p className="text-lg font-semibold text-gray-600 mb-4">
-                  {`₹${(dish.dishcost * (Dishquantity[dish._id] || 0)).toFixed(2)}`}
+                  {`₹${(dish.dishcost * (Dishquantity[dish._id] || 0)).toFixed(
+                    2
+                  )}`}
                 </p>
                 <div className="flex justify-center items-center space-x-4 bg-gray-100 rounded-full p-2">
                   <button
                     onClick={() => handleminus(dish._id)}
                     className="bg-black/30 text-white p-2 rounded-full transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 12h14"
+                      />
                     </svg>
                   </button>
                   <span className="text-xl font-bold text-gray-700 w-10 text-center">
@@ -86,8 +100,19 @@ const Dash = () => {
                     onClick={() => handleplus(dish._id)}
                     className="bg-green-300 text-white p-2 rounded-full transition-colors hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -95,19 +120,29 @@ const Dash = () => {
             ))}
           </div>
         ) : (
-          <h2 className="text-2xl text-white text-center mt-10">No dishes available</h2>
+          <h2 className="text-2xl text-white text-center mt-10">
+            No dishes available
+          </h2>
         )}
       </div>
       <div>
-      <button onClick={()=>navigate('/')} className=' text-3xl text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in'>BACK</button>
-      <button onClick={navigateToBill} className=' text-3xl mt-20 text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in'>BILL</button>
-     
+        <button
+          onClick={() => navigate("/")}
+          className=" text-3xl text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in"
+        >
+          BACK
+        </button>
+        <button
+          onClick={navigateToBill}
+          className=" text-3xl mt-20 text-black/50 rounded-[10px] cursor-pointer bg-black/10 rounded-md my-2 p-3 ml-4 hover:scale-105 transform transition-all  duration-300 ease-in"
+        >
+          BILL
+        </button>
       </div>
-      
-      <div className='hidden'>
-      <Bill data = {data} Dishquantity = {Dishquantity}/>
+
+      <div className="hidden">
+        <Bill data={data} Dishquantity={Dishquantity} />
       </div>
-     
     </div>
   );
 };
